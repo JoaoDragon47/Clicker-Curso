@@ -23,7 +23,6 @@ mouse_pointing = "res://Assets/Images/cursor_point_hand.png"
 clicker_idle = "res://Assets/Images/idle.png"
 clicker_pressed = "res://Assets/Images/click_pressed.png"
 clicker_hover = "res://Assets/Images/click_hover.png"
-clicks = 0
 
 [node name="Interface" type="CanvasLayer" parent="."]
 
@@ -88,17 +87,17 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_ytf48")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Interface/Buttons/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Interface/Buttons/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 128
+alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="Interface/Buttons/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 alignment = 1
 
-[node name="MelhorarClick" type="HBoxContainer" parent="Interface/Buttons/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 116
-alignment = 1
-
-[node name="MelhorarClickButton" type="Button" parent="Interface/Buttons/MarginContainer/VBoxContainer/MelhorarClick"]
+[node name="MelhorarClickButton" type="Button" parent="Interface/Buttons/MarginContainer/HBoxContainer/Buttons"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
@@ -106,25 +105,24 @@ size_flags_vertical = 0
 text = "Melhorar Click"
 alignment = 0
 
-[node name="MelhorarClickPrice" type="Label" parent="Interface/Buttons/MarginContainer/VBoxContainer/MelhorarClick"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 8
-text = "R$ 2,00"
-
-[node name="AutoClicker" type="HBoxContainer" parent="Interface/Buttons/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 132
-alignment = 1
-
-[node name="AutoClickerButton" type="Button" parent="Interface/Buttons/MarginContainer/VBoxContainer/AutoClicker"]
+[node name="AutoClickerButton" type="Button" parent="Interface/Buttons/MarginContainer/HBoxContainer/Buttons"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Auto Clicker"
 alignment = 0
 
-[node name="AutoClickerPrice" type="Label" parent="Interface/Buttons/MarginContainer/VBoxContainer/AutoClicker"]
+[node name="Prices" type="VBoxContainer" parent="Interface/Buttons/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+alignment = 1
+
+[node name="MelhorarClickPrice" type="Label" parent="Interface/Buttons/MarginContainer/HBoxContainer/Prices"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+text = "R$ 2,00"
+
+[node name="AutoClickerPrice" type="Label" parent="Interface/Buttons/MarginContainer/HBoxContainer/Prices"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "R$ 2,00"
@@ -132,7 +130,7 @@ text = "R$ 2,00"
 [node name="AutoClicker" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="pressed" from="Interface/ButtonClicker" to="." method="clicked"]
-[connection signal="pressed" from="Interface/Buttons/MarginContainer/VBoxContainer/MelhorarClick/MelhorarClickButton" to="." method="melhorar_click"]
-[connection signal="pressed" from="Interface/Buttons/MarginContainer/VBoxContainer/AutoClicker/AutoClickerButton" to="." method="comprar_autoclicker"]
+[connection signal="pressed" from="Interface/ButtonClicker" to="." method="clicar"]
+[connection signal="pressed" from="Interface/Buttons/MarginContainer/HBoxContainer/Buttons/MelhorarClickButton" to="." method="melhorar_click"]
+[connection signal="pressed" from="Interface/Buttons/MarginContainer/HBoxContainer/Buttons/AutoClickerButton" to="." method="comprar_autoclicker"]
 [connection signal="timeout" from="AutoClicker" to="." method="auto_clicked"]

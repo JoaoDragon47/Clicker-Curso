@@ -1,5 +1,6 @@
 extends Node2D
 
+# Variáveis de arquivos para personalizar o clicker
 @export var clicker_name: String = "Tapas"
 @export_group("Imagens Mouse")
 @export_file() var mouse_arrow: String
@@ -10,7 +11,7 @@ extends Node2D
 @export_file() var clicker_pressed: String
 @export_file() var clicker_hover: String
 
-# Nodes
+# Nodes (Conseguir acessar e modificar esses nodes)
 @onready var button_clicker: TextureButton = $Interface/ButtonClicker
 @onready var auto_clicker_button: Button = %AutoClickerButton
 @onready var numero_clickers: Label = $Interface/ButtonClicker/NumeroClickers
@@ -64,13 +65,13 @@ func _ready() -> void:
 		button_clicker.texture_hover = load(clicker_hover)
 
 
-func clicked() -> void:
+func clicar() -> void:
 	clicks += value_per_click
 	
 	numero_clickers.text = str(clicks) + " " + clicker_name
 
 func auto_clicked() -> void:
-	clicked()
+	clicar()
 	
 	auto_clicker_timer.start(auto_clicker_cooldown)
 
