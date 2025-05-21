@@ -23,7 +23,7 @@ mouse_pointing = "res://Assets/Images/cursor_point_hand.png"
 clicker_idle = "res://Assets/Images/idle.png"
 clicker_pressed = "res://Assets/Images/click_pressed.png"
 clicker_hover = "res://Assets/Images/click_hover.png"
-clicks = 5000
+clicks = 0
 
 [node name="Interface" type="CanvasLayer" parent="."]
 
