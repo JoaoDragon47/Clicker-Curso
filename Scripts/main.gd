@@ -14,6 +14,7 @@ extends Node2D
 # Nodes (Conseguir acessar e modificar esses nodes)
 @onready var button_clicker: TextureButton = $Interface/ButtonClicker
 @onready var auto_clicker_button: Button = %AutoClickerButton
+@onready var melhorar_click_button = %MelhorarClickButton
 @onready var numero_clickers: Label = $Interface/ButtonClicker/NumeroClickers
 @onready var spawn_particles: Marker2D = %SpawnParticles
 @onready var auto_clicker_price_label: Label = %AutoClickerPrice
@@ -39,7 +40,7 @@ var value_per_click: int = 1
 
 func _ready() -> void:
 	numero_clickers.text = str(clicks) + " " + clicker_name
-	melhorar_click_price_label.text = str(melhorar_click_data.prices[0]) + " " + clicker_name
+	melhorar_click_price_label.text = str(melhorar_click_data.prices[melhorar_click_data.updates]) + " " + clicker_name
 	auto_clicker_price_label.text = str(auto_clicker_data.price) + " " + clicker_name
 	
 	if mouse_arrow:
@@ -85,11 +86,18 @@ func melhorar_click() -> void:
 		
 		value_per_click += 1
 		
-		_update = melhorar_click_data.updates
-		_price = melhorar_click_data.prices[_update]
+		if melhorar_click_data.updates >= melhorar_click_data.prices.size():
+			melhorar_click_price_label.text = "MÁXIMO"
+			
+			melhorar_click_button.disabled = true
+		else:
+			_update = melhorar_click_data.updates
+			_price = melhorar_click_data.prices[_update]
+			
+			melhorar_click_price_label.text = str(_price) + " " + clicker_name
 		
 		numero_clickers.text = str(clicks) + " " + clicker_name
-		melhorar_click_price_label.text = str(_price) + " " + clicker_name
+		
 
 
 func comprar_autoclicker():

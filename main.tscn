@@ -23,6 +23,11 @@ mouse_pointing = "res://Assets/Images/cursor_point_hand.png"
 clicker_idle = "res://Assets/Images/idle.png"
 clicker_pressed = "res://Assets/Images/click_pressed.png"
 clicker_hover = "res://Assets/Images/click_hover.png"
+clicks = 5000
+melhorar_click_data = {
+"prices": [20, 80, 140, 200, 350, 600, 1000, 3000],
+"updates": 6
+}
 
 [node name="Interface" type="CanvasLayer" parent="."]
 
